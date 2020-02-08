@@ -1,0 +1,85 @@
+import java.util.*;
+
+public class Main {
+    // Principale
+    public static void main(String[] args) {
+        // variables de classes
+        String a = "";
+        String b = "";
+        int d = 0;
+        int i = 0;
+        int j = 0;
+        Scanner scanner = new Scanner(System.in);
+        // Sollicitation ARN
+        System.out.println("Veuilliez entre une chaine de caracteres representant le premier ARN ");
+        a = scanner.nextLine();
+        if ((a.length() % 3) != 0 || (!a.matches("^[ACGU]+$"))) {
+            System.err.println
+                    ("Entree invalide");
+            System.exit(-1);
+        }
+        System.out.println("Veuilliez entre une chaine de caracteres representant le deuxieme ARN ");
+        b = scanner.nextLine();
+        if ((b.length() % 3) != 0 || (!b.matches("^[ACGU]+$"))) {
+            System.err.println
+                    ("Entree invalide");
+            System.exit(-1);
+        }
+        while (d <= 0) {
+            System.out.print("Veuilliez entrer un nombre entier pour le calcul metrique: ");
+            try {
+                d = Integer.parseInt(scanner.next());
+                if (d <= 0) {
+                    System.err.println("Le nombre doit être supérieur à 0");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Nombre invalide");
+            }
+        }
+
+        List<String> listChaine = construireChaine(a);
+        List<String> listChaine2 = construireChaine(b);
+        Map<String, Integer> result = verifieCorrespondance(listChaine, listChaine2);
+        System.out.println(result);
+    }
+
+    public static List<String>  construireChaine (String chaineEntree) {
+        List<String> response = new ArrayList<>();
+        int userInputSize = chaineEntree.length();
+        int chainNumber = userInputSize / 3;
+        int start = 0;
+        int end = 0;
+        for (int i = 0; i < chainNumber; i++) {
+            start =  end;
+            end = start + 3;
+            response.add(chaineEntree.substring(start, end));
+        }
+        return response;
+    }
+
+    private static Map<String, Integer> verifieCorrespondance(List<String> chaine1, List<String> chaine2) {
+        Map<String, Integer> resultat = new HashMap<>();
+        for (String chaine: chaine1) {
+            if(chaine2.contains(chaine)) {
+                int index1 = chaine1.indexOf(chaine);
+                int index2 = chaine2.indexOf(chaine);
+                int diff = index1 - index2;
+                resultat.put(chaine, diff);
+            }
+        }
+
+        return resultat;
+    }
+public static boolean variableEstSuperieur ( Map<String, Integer> resultat) {
+    for (Map.Entry<String, String> entry : Map.entrySet()) {    if(chaine2.contains(chaine)) {
+            int index1 = chaine1.indexOf(chaine);
+            int index2 = chaine2.indexOf(chaine);
+            int diff = index1 - index2;
+            resultat.put(chaine, diff);
+        }
+    })
+}
+}
+
+
+
