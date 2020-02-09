@@ -35,50 +35,139 @@ public class Main {
             } catch (NumberFormatException e) {
                 System.err.println("Nombre invalide");
             }
+            List<String> listChaine = buildListOfString(a);
+            List<String> listChaine2 = buildListOfString(b);
+            Map<String, Integer> result = verifyMatch(listChaine, listChaine2, d);
+            System.out.println(result);
+
+            Integer sommeDeviation = 0;
+            // Iteration value de deviations
+            Collection<Integer> valueDeviation = result.values();
+            for (Integer valeur : valueDeviation) {
+
+                sommeDeviation = sommeDeviation + valeur;
+            }
+
+            double mst = (double) sommeDeviation / (((a.length() / 3) + (b.length() / 3)) * d);
+            System.out.println(Math.pow(2.71828, (-6 * (Math.pow(mst, 2)))));
         }
 
-        List<String> listChaine = construireChaine(a);
-        List<String> listChaine2 = construireChaine(b);
-        Map<String, Integer> result = verifieCorrespondance(listChaine, listChaine2);
-        System.out.println(result);
+
+
+
     }
 
-    public static List<String>  construireChaine (String chaineEntree) {
+
+
+    /**
+     * Methode qui instancie une ArrayList d'element de longueur trois composes d'acides amines.
+     *
+     * @param chaine
+     * @return ArrayList represantant la chaine separee par sequences de 3 caracteres reprensantant des codons
+     */
+    private static List<String> buildListOfString(String chaine) {
         List<String> response = new ArrayList<>();
-        int userInputSize = chaineEntree.length();
-        int chainNumber = userInputSize / 3;
+        int chainNumber = chaine.length() / 3;
         int start = 0;
         int end = 0;
         for (int i = 0; i < chainNumber; i++) {
-            start =  end;
+            start = end;
             end = start + 3;
-            response.add(chaineEntree.substring(start, end));
+            if (chaine.substring(start, end).equals("GCU") || chaine.substring(start, end).equals("GCC") ||
+                    chaine.substring(start, end).equals("GCA")
+                    || chaine.substring(start, end).equals("GCG")) {
+                response.add("Ala");
+            } else if (chaine.substring(start, end).equals("CGU") || chaine.substring(start, end).equals("CGC") ||
+                    chaine.substring(start, end).equals("CGA")
+                    || chaine.substring(start, end).equals("CGG") || chaine.substring(start, end).equals("AGA")
+                    || chaine.substring(start, end).equals("AGG")) {
+                response.add("Arg");
+            } else if (chaine.substring(start, end).equals("AAU") || chaine.substring(start, end).equals("AAC")) {
+                response.add("Asn");
+            } else if (chaine.substring(start, end).equals("GAU") || chaine.substring(start, end).equals("GAC")) {
+                response.add("Asp");
+            } else if (chaine.substring(start, end).equals("UGU") || chaine.substring(start, end).equals("UGC")) {
+                response.add("Cys");
+            } else if (chaine.substring(start, end).equals("GAA") || chaine.substring(start, end).equals("GAG")) {
+                response.add("Glu");
+            } else if (chaine.substring(start, end).equals("CAA") || chaine.substring(start, end).equals("CAG")) {
+                response.add("Gln");
+            } else if (chaine.substring(start, end).equals("GGU") || chaine.substring(start, end).equals("GGC") ||
+                    chaine.substring(start, end).equals("GGA")
+                    || chaine.substring(start, end).equals("GGG")) {
+                response.add("Gly");
+            } else if (chaine.substring(start, end).equals("CAU") || chaine.substring(start, end).equals("CAC")) {
+                response.add("His");
+            } else if (chaine.substring(start, end).equals("AUU") || chaine.substring(start, end).equals("AUC")
+                    || chaine.substring(start, end).equals("AUA")) {
+                response.add("Ile");
+            } else if (chaine.substring(start, end).equals("UUA") || chaine.substring(start, end).equals("UUG")
+                    || chaine.substring(start, end).equals("CUU") || chaine.substring(start, end).equals("CUC") || chaine.substring(start, end).equals("CUA")
+                    || chaine.substring(start, end).equals("CUG")) {
+                response.add("Leu");
+            } else if (chaine.substring(start, end).equals("AAA") || chaine.substring(start, end).equals("AAG")) {
+                response.add("Lys");
+            } else if (chaine.substring(start, end).equals("AUG")) {
+                response.add("Met");
+            } else if (chaine.substring(start, end).equals("UUU") || chaine.substring(start, end).equals("UUC")) {
+                response.add("Phe");
+            } else if (chaine.substring(start, end).equals("CCU") || chaine.substring(start, end).equals("CCC")
+                    || chaine.substring(start, end).equals("CCA") || chaine.substring(start, end).equals("CCG")) {
+                response.add("Pro");
+            } else if (chaine.substring(start, end).equals("UAG")) {
+                response.add("Pyl");
+            } else if (chaine.substring(start, end).equals("UGA")) {
+                response.add("Sec");
+            } else if (chaine.substring(start, end).equals("UCU") || chaine.substring(start, end).equals("UCC")
+                    || chaine.substring(start, end).equals("UCA") || chaine.substring(start, end).equals("UCG") || chaine.substring(start, end).equals("AGU")
+                    || chaine.substring(start, end).equals("AGC")) {
+                response.add("Ser");
+            } else if (chaine.substring(start, end).equals("ACU") || chaine.substring(start, end).equals("ACC")
+                    || chaine.substring(start, end).equals("ACA") || chaine.substring(start, end).equals("ACG")) {
+                response.add("Thr");
+            } else if (chaine.substring(start, end).equals("UGG")) {
+                response.add("Trp");
+            } else if (chaine.substring(start, end).equals("UAU") || chaine.substring(start, end).equals("UAC")) {
+                response.add("Tyr");
+            } else if (chaine.substring(start, end).equals("GUU") || chaine.substring(start, end).equals("GUC")
+                    || chaine.substring(start, end).equals("GUA") || chaine.substring(start, end).equals("GUG")) {
+                response.add("Val");
+            } else if (chaine.substring(start, end).equals("UAA")) {
+                response.add("Fin");
+
+            }
         }
         return response;
     }
 
-    private static Map<String, Integer> verifieCorrespondance(List<String> chaine1, List<String> chaine2) {
-        Map<String, Integer> resultat = new HashMap<>();
-        for (String chaine: chaine1) {
-            if(chaine2.contains(chaine)) {
+    /**
+     * Methoque qui calcule la deviation minimale entre des chaines d'acides amines
+     *
+     * @param chaine1
+     * @param chaine2
+     * @param dev
+     * @return la somme total des deviations entres les deux chaines.
+     */
+    private static Map<String, Integer> verifyMatch(List<String> chaine1, List<String> chaine2, int dev) {
+        Map<String, Integer> result = new HashMap<>();
+        for (String chaine : chaine1) {
+            if (chaine2.contains(chaine)) {
                 int index1 = chaine1.indexOf(chaine);
                 int index2 = chaine2.indexOf(chaine);
-                int diff = index1 - index2;
-                resultat.put(chaine, diff);
+                int diff = ((index1 - index2)/3) + 1;
+                if (diff < dev) {
+                    diff = dev;
+                }
+                if (diff < 0) {
+                    diff = diff * -1;
+                }
+                result.put(chaine, diff);
             }
-        }
 
-        return resultat;
-    }
-public static boolean variableEstSuperieur ( Map<String, Integer> resultat) {
-    for (Map.Entry<String, String> entry : Map.entrySet()) {    if(chaine2.contains(chaine)) {
-            int index1 = chaine1.indexOf(chaine);
-            int index2 = chaine2.indexOf(chaine);
-            int diff = index1 - index2;
-            resultat.put(chaine, diff);
+
         }
-    })
-}
+        return result;
+    }
 }
 
 
