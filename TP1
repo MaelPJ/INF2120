@@ -38,9 +38,13 @@ public class Main {
             List<String> listChaine = buildListOfString(a);
             List<String> listChaine2 = buildListOfString(b);
             Map<String, Integer> result = verifyMatch(listChaine, listChaine2, d);
-            System.out.println(result);
+            Map<String, Integer> result2 = verifyMatch2(listChaine, listChaine2, d);
+
+
 
             Integer sommeDeviation = 0;
+            Integer sommeDeviation2 = 0;
+
             // Iteration value de deviations
             Collection<Integer> valueDeviation = result.values();
             for (Integer valeur : valueDeviation) {
@@ -48,8 +52,20 @@ public class Main {
                 sommeDeviation = sommeDeviation + valeur;
             }
 
-            double mst = (double) sommeDeviation / (((a.length() / 3) + (b.length() / 3)) * d);
+
+            // Iteration value de deviations
+            Collection<Integer> valueDeviation2 = result2.values();
+            for (Integer valeur : valueDeviation2) {
+
+                sommeDeviation2 = sommeDeviation2 + valeur;
+            }
+
+            double mst = (double) (sommeDeviation+sommeDeviation2) / (((a.length() / 3) + (b.length() / 3)) * d);
             System.out.println(Math.pow(2.71828, (-6 * (Math.pow(mst, 2)))));
+
+
+
+
         }
 
 
@@ -60,7 +76,8 @@ public class Main {
 
 
     /**
-     * Methode qui instancie une ArrayList d'element de longueur trois composes d'acides amines.
+     * Methode qui instancie une ArrayList d'element de longueur trois composes d'acides amines, et determine
+     * ce que chaque codon represente.
      *
      * @param chaine
      * @return ArrayList represantant la chaine separee par sequences de 3 caracteres reprensantant des codons
@@ -162,6 +179,37 @@ public class Main {
                     diff = diff * -1;
                 }
                 result.put(chaine, diff);
+                System.out.println("diff =" + chaine + diff);
+            }
+
+
+        }
+        return result;
+    }
+
+    /**
+     * Methoque qui calcule la deviation minimale entre des chaines d'acides amines en sens oppose
+     *
+     * @param chaine1
+     * @param chaine2
+     * @param dev
+     * @return la somme total des deviations entres les deux chaines.
+     */
+    private static Map<String, Integer> verifyMatch2(List<String> chaine1, List<String> chaine2, int dev) {
+        Map<String, Integer> result = new HashMap<>();
+        for (String chaine : chaine1) {
+            if (chaine2.contains(chaine)) {
+                int index1 = chaine2.indexOf(chaine);
+                int index2 = chaine1.indexOf(chaine);
+                int diff = ((index2 - index1)/3) + 1;
+                if (diff < dev) {
+                    diff = dev;
+                }
+                if (diff < 0) {
+                    diff = diff * -1;
+                }
+                result.put(chaine, diff);
+                System.out.println("diff2 =" + chaine + diff);
             }
 
 
