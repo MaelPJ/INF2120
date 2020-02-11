@@ -1,0 +1,170 @@
+import java.util.*;
+
+public class Main {
+    // Principale
+    public static void main(String[] args) {
+        // variables de classes
+        String a = "";
+        String b = "";
+        int d = 0;
+        int i = 0;
+        int j = 0;
+        Scanner scanner = new Scanner(System.in);
+        // Sollicitation ARN
+        System.out.println("Veuilliez entre une chaine de caracteres representant le premier ARN ");
+        a = scanner.nextLine();
+        if ((a.length() % 3) != 0 || (!a.matches("^[ACGU]+$"))) {
+            System.err.println
+                    ("Entree invalide");
+            System.exit(-1);
+        }
+        System.out.println("Veuilliez entre une chaine de caracteres representant le deuxieme ARN ");
+        b = scanner.nextLine();
+        if ((b.length() % 3) != 0 || (!b.matches("^[ACGU]+$"))) {
+            System.err.println
+                    ("Entree invalide");
+            System.exit(-1);
+        }
+        while (d <= 0) {
+            System.out.print("Veuilliez entrer un nombre entier pour le calcul metrique: ");
+            try {
+                d = Integer.parseInt(scanner.next());
+                if (d <= 0) {
+                    System.err.println("Le nombre doit être supérieur à 0");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Nombre invalide");
+            }
+
+
+
+
+
+            // double mst = (double) (sommeDeviation + sommeDeviation2) / (((a.length() / 3) + (b.length() / 3)) * d);
+            // System.out.println(Math.pow(2.71828, (-6 * (Math.pow(mst, 2)))));
+
+
+        }
+        List<String> listChaine = buildListOfString(a);
+        List<String> listChaine2 = buildListOfString(b);
+        int test = calculDeviation ( listChaine, listChaine2,  d, "Ala");
+        System.out.println(test);
+
+
+    }
+
+
+    /**
+     * Methode qui instancie une ArrayList d'element de longueur trois composes d'acides amines, et determine
+     * ce que chaque codon represente.
+     *
+     * @param chaine
+     * @return ArrayList represantant la chaine separee par sequences de 3 caracteres reprensantant des codons
+     */
+    private static List<String> buildListOfString(String chaine) {
+        List<String> response = new ArrayList<>();
+        int chainNumber = chaine.length() / 3;
+        int start = 0;
+        int end = 0;
+        for (int i = 0; i < chainNumber; i++) {
+            start = end;
+            end = start + 3;
+            if (chaine.substring(start, end).equals("GCU") || chaine.substring(start, end).equals("GCC") ||
+                    chaine.substring(start, end).equals("GCA")
+                    || chaine.substring(start, end).equals("GCG")) {
+                response.add("Ala");
+            } else if (chaine.substring(start, end).equals("CGU") || chaine.substring(start, end).equals("CGC") ||
+                    chaine.substring(start, end).equals("CGA")
+                    || chaine.substring(start, end).equals("CGG") || chaine.substring(start, end).equals("AGA")
+                    || chaine.substring(start, end).equals("AGG")) {
+                response.add("Arg");
+            } else if (chaine.substring(start, end).equals("AAU") || chaine.substring(start, end).equals("AAC")) {
+                response.add("Asn");
+            } else if (chaine.substring(start, end).equals("GAU") || chaine.substring(start, end).equals("GAC")) {
+                response.add("Asp");
+            } else if (chaine.substring(start, end).equals("UGU") || chaine.substring(start, end).equals("UGC")) {
+                response.add("Cys");
+            } else if (chaine.substring(start, end).equals("GAA") || chaine.substring(start, end).equals("GAG")) {
+                response.add("Glu");
+            } else if (chaine.substring(start, end).equals("CAA") || chaine.substring(start, end).equals("CAG")) {
+                response.add("Gln");
+            } else if (chaine.substring(start, end).equals("GGU") || chaine.substring(start, end).equals("GGC") ||
+                    chaine.substring(start, end).equals("GGA")
+                    || chaine.substring(start, end).equals("GGG")) {
+                response.add("Gly");
+            } else if (chaine.substring(start, end).equals("CAU") || chaine.substring(start, end).equals("CAC")) {
+                response.add("His");
+            } else if (chaine.substring(start, end).equals("AUU") || chaine.substring(start, end).equals("AUC")
+                    || chaine.substring(start, end).equals("AUA")) {
+                response.add("Ile");
+            } else if (chaine.substring(start, end).equals("UUA") || chaine.substring(start, end).equals("UUG")
+                    || chaine.substring(start, end).equals("CUU") || chaine.substring(start, end).equals("CUC") || chaine.substring(start, end).equals("CUA")
+                    || chaine.substring(start, end).equals("CUG")) {
+                response.add("Leu");
+            } else if (chaine.substring(start, end).equals("AAA") || chaine.substring(start, end).equals("AAG")) {
+                response.add("Lys");
+            } else if (chaine.substring(start, end).equals("AUG")) {
+                response.add("Met");
+            } else if (chaine.substring(start, end).equals("UUU") || chaine.substring(start, end).equals("UUC")) {
+                response.add("Phe");
+            } else if (chaine.substring(start, end).equals("CCU") || chaine.substring(start, end).equals("CCC")
+                    || chaine.substring(start, end).equals("CCA") || chaine.substring(start, end).equals("CCG")) {
+                response.add("Pro");
+            } else if (chaine.substring(start, end).equals("UAG")) {
+                response.add("Pyl");
+            } else if (chaine.substring(start, end).equals("UGA")) {
+                response.add("Sec");
+            } else if (chaine.substring(start, end).equals("UCU") || chaine.substring(start, end).equals("UCC")
+                    || chaine.substring(start, end).equals("UCA") || chaine.substring(start, end).equals("UCG") || chaine.substring(start, end).equals("AGU")
+                    || chaine.substring(start, end).equals("AGC")) {
+                response.add("Ser");
+            } else if (chaine.substring(start, end).equals("ACU") || chaine.substring(start, end).equals("ACC")
+                    || chaine.substring(start, end).equals("ACA") || chaine.substring(start, end).equals("ACG")) {
+                response.add("Thr");
+            } else if (chaine.substring(start, end).equals("UGG")) {
+                response.add("Trp");
+            } else if (chaine.substring(start, end).equals("UAU") || chaine.substring(start, end).equals("UAC")) {
+                response.add("Tyr");
+            } else if (chaine.substring(start, end).equals("GUU") || chaine.substring(start, end).equals("GUC")
+                    || chaine.substring(start, end).equals("GUA") || chaine.substring(start, end).equals("GUG")) {
+                response.add("Val");
+            } else if (chaine.substring(start, end).equals("UAA")) {
+                response.add("Fin");
+
+            }
+        }
+        return response;
+    }
+
+
+    public static int calculDeviation ( List<String> chaine1, List<String> chaine2, int devInput, String acideAmine) {
+        deviationMin = devInput;
+        int deviationTemp =100;
+        int chaine1Length = chaine1.size();
+        int chaine2Length = chaine2.size();
+
+        // Iteration entre les deux listes
+
+        for ( int i = 0; i < chaine1Length ; i++ ) {
+            for (int j = 0; j< chaine2Length ; j++) {
+                if (chaine1.get(i) == acideAmine) {
+                    if ( chaine1.get(i) == chaine2.get(j)) {
+                        
+                        deviationTemp = j - i;
+                    }
+                    // Mise en valeur absolue
+                    if (deviationTemp < 0) {
+                        deviationTemp = deviationTemp * -1;
+                    }
+                    if (deviationTemp < deviationMin) {
+                        deviationMin = deviationTemp;
+                    }
+
+                }
+            }
+        }
+        return deviationMin;
+    }
+}
+
+
