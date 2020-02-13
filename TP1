@@ -35,44 +35,231 @@ public class Main {
             } catch (NumberFormatException e) {
                 System.err.println("Nombre invalide");
             }
-            List<String> listChaine = buildListOfString(a);
-            List<String> listChaine2 = buildListOfString(b);
-            Map<String, Integer> result = verifyMatch(listChaine, listChaine2, d);
-            Map<String, Integer> result2 = verifyMatch2(listChaine, listChaine2, d);
 
 
 
-            Integer sommeDeviation = 0;
-            Integer sommeDeviation2 = 0;
-
-            // Iteration value de deviations
-            Collection<Integer> valueDeviation = result.values();
-            for (Integer valeur : valueDeviation) {
-
-                sommeDeviation = sommeDeviation + valeur;
-            }
 
 
-            // Iteration value de deviations
-            Collection<Integer> valueDeviation2 = result2.values();
-            for (Integer valeur : valueDeviation2) {
-
-                sommeDeviation2 = sommeDeviation2 + valeur;
-            }
-
-            double mst = (double) (sommeDeviation+sommeDeviation2) / (((a.length() / 3) + (b.length() / 3)) * d);
-            System.out.println(Math.pow(2.71828, (-6 * (Math.pow(mst, 2)))));
-
-
+            // double mst = (double) (sommeDeviation + sommeDeviation2) / (((a.length() / 3) + (b.length() / 3)) * d);
+            // System.out.println(Math.pow(2.71828, (-6 * (Math.pow(mst, 2)))));
 
 
         }
+        // Calculs des deviations
+        List<String> listChaine = buildListOfString(a);
+        List<String> listChaine2 = buildListOfString(b);
+        int devAla;
+        int devArg;
+        int devAsn;
+        int devAsp;
+        int devCys;
+        int devGlu;
+        int devGln;
+        int devGly;
+        int devLeu;
+        int devPhe;
+        int devVal;
+        int devHis;
+        int devIle;
+        int devLys;
+        int devMet;
+        int devPro;
+        int devPyl;
+        int devSec;
+        int devSer;
+        int devThr;
+        int devTrp;
+        int devTyr;
 
+        int testAla1 = calculDeviation ( listChaine, listChaine2,  d, "Ala");
+        int testAla2 = calculDeviation ( listChaine2, listChaine,  d, "Ala");
+        if (testAla1 < testAla2) {
+            devAla = testAla1;
+        } else {
+            devAla = testAla2;
+        }
+        System.out.print(testAla2);
 
+        int testArg1 = calculDeviation ( listChaine, listChaine2,  d, "Arg");
+        int testArg2 = calculDeviation ( listChaine2, listChaine,  d, "Arg");
+        if (testArg1 < testArg2) {
+            devArg = testArg1;
+        } else {
+            devArg = testArg2;
+        }
+
+        int testAsn1 = calculDeviation ( listChaine, listChaine2,  d, "Asn");
+        int testAsn2 = calculDeviation ( listChaine2, listChaine,  d, "Asn");
+        if (testAsn1 < testAsn2) {
+            devAsn = testAsn1;
+        } else {
+            devAsn = testAsn2;
+        }
+
+        int testAsp1 = calculDeviation ( listChaine, listChaine2,  d, "Asp");
+        int testAsp2 = calculDeviation ( listChaine2, listChaine,  d, "Asp");
+        if (testAsp1 < testAsp2) {
+            devAsp = testAsp1;
+        } else {
+           devAsp = testAsp2;
+        }
+
+        int testCys1 = calculDeviation ( listChaine, listChaine2,  d, "Cys");
+        int testCys2 = calculDeviation ( listChaine2, listChaine,  d, "Cys");
+        if (testCys1 < testCys2) {
+            devCys = testCys1;
+        } else {
+            devCys = testCys2;
+        }
+
+        int testGlu1 = calculDeviation ( listChaine, listChaine2,  d, "Glu");
+        int testGlu2 = calculDeviation ( listChaine2, listChaine,  d, "Glu");
+        if (testGlu1 < testGlu2) {
+            devGlu = testGlu1;
+        } else {
+            devGlu = testGlu2;
+        }
+
+        int testGln1 = calculDeviation ( listChaine, listChaine2,  d, "Gln");
+        int testGln2 = calculDeviation ( listChaine2, listChaine,  d, "Gln");
+        if (testGln1 < testGln2) {
+            devGln = testGln1;
+        } else {
+            devGln = testGln2;
+        }
+
+        int testGly1 = calculDeviation ( listChaine, listChaine2,  d, "Gly");
+        int testGly2 = calculDeviation ( listChaine2, listChaine,  d, "Gly");
+        if (testGly1 < testGly2) {
+            devGly = testGly1;
+        } else {
+            devGly = testGly2;
+        }
+
+        int testHis1 = calculDeviation ( listChaine, listChaine2,  d, "His");
+        int testHis2 = calculDeviation ( listChaine2, listChaine,  d, "His");
+        if (testHis1 < testHis2) {
+            devHis = testHis1;
+        } else {
+            devHis = testHis2;
+        }
+
+        int testIle1 = calculDeviation ( listChaine, listChaine2,  d, "Ile");
+        int testIle2 = calculDeviation ( listChaine2, listChaine,  d, "Ile");
+        if (testIle1 < testIle2) {
+            devIle = testIle1;
+        } else {
+            devIle = testIle2;
+        }
+
+        int testLeu1 = calculDeviation ( listChaine, listChaine2,  d, "Leu");
+        int testLeu2 = calculDeviation ( listChaine2, listChaine,  d, "Leu");
+        if (testLeu1 < testLeu2) {
+            devLeu = testLeu1;
+        } else {
+            devLeu = testLeu2;
+        }
+
+        int testLys1 = calculDeviation ( listChaine, listChaine2,  d, "Lys");
+        int testLys2 = calculDeviation ( listChaine2, listChaine,  d, "Lys");
+        if (testLys1 < testLys2) {
+            devLys = testLys1;
+        } else {
+            devLys = testLys2;
+        }
+
+        int testMet1 = calculDeviation ( listChaine, listChaine2,  d, "Met");
+        int testMet2 = calculDeviation ( listChaine2, listChaine,  d, "Met");
+        if (testMet1 < testMet2) {
+            devMet = testMet1;
+        } else {
+            devMet = testMet2;
+        }
+
+        int testPhe1 = calculDeviation ( listChaine, listChaine2,  d, "Phe");
+        int testPhe2 = calculDeviation ( listChaine2, listChaine,  d, "Phe");
+        if (testPhe1 < testPhe2) {
+           devPhe = testPhe1;
+        } else {
+           devPhe = testPhe2;
+        }
+
+        int testPro1 = calculDeviation ( listChaine, listChaine2,  d, "Pro");
+        int testPro2 = calculDeviation ( listChaine2, listChaine,  d, "Pro");
+        if (testPro1 < testPro2) {
+            devPro = testPro1;
+        } else {
+            devPro = testPro2;
+        }
+
+        int testPyl1 = calculDeviation ( listChaine, listChaine2,  d, "Pyl");
+        int testPyl2 = calculDeviation ( listChaine2, listChaine,  d, "Pyl");
+        if (testPyl1 < testPro2) {
+           devPyl = testPyl1;
+        } else {
+           devPyl = testPyl2;
+        }
+
+        int testSec1 = calculDeviation ( listChaine, listChaine2,  d, "Sec");
+        int testSec2 = calculDeviation ( listChaine2, listChaine,  d, "Sec");
+        if (testSec1 < testSec2) {
+            devSec = testSec1;
+        } else {
+            devSec = testSec2;
+        }
+
+        int testSer1 = calculDeviation ( listChaine, listChaine2,  d, "Ser");
+        int testSer2 = calculDeviation ( listChaine2, listChaine,  d, "Ser");
+        if (testSer1 < testSer2) {
+            devSer = testSer1;
+        } else {
+            devSer = testSer2;
+        }
+
+        int testThr1 = calculDeviation ( listChaine, listChaine2,  d, "Thr");
+        int testThr2 = calculDeviation ( listChaine2, listChaine,  d, "Thr");
+        if (testThr1 < testThr2) {
+            devThr = testSer1;
+        } else {
+            devThr = testThr2;
+        }
+
+        int testTrp1 = calculDeviation ( listChaine, listChaine2,  d, "Trp");
+        int testTrp2 = calculDeviation ( listChaine2, listChaine,  d, "Trp");
+        if (testTrp1 < testTrp2) {
+            devTrp = testSer1;
+        } else {
+            devTrp = testTrp2;
+        }
+
+        int testTyr1 = calculDeviation ( listChaine, listChaine2,  d, "Tyr");
+        int testTyr2 = calculDeviation ( listChaine2, listChaine,  d, "Tyr");
+        if (testTyr1 < testTyr2) {
+            devTyr = testTyr1;
+        } else {
+            devTyr = testTyr2;
+        }
+
+        int testVal1 = calculDeviation ( listChaine, listChaine2,  d, "Val");
+        int testVal2 = calculDeviation ( listChaine2, listChaine,  d, "Val");
+        if (testVal1 < testVal2) {
+           devVal = testVal1;
+        } else {
+            devVal = testVal2;
+        }
+
+        int devSommeTotale= testAla1 + testAla2 +  testArg1 + testArg2 + testAsn1 + testAsn2 + testCys1 + testCys2 +
+        + testGlu1 + testGlu2 + testGln1 + testGln2 +  testGly1+ testGly2 + testLeu1 + testLeu2 + testPhe1+ testPhe2 +
+        + testVal1+ testVal2 + testHis1 + testHis2 + testIle1+ testIle2 + testLys1 + testLys2 + testMet1 + testMet2 +
+         testPro1 + testPro2 + testPyl1 + testPyl2 + testSec1 + testSec2 + testSer1 + testSer2 + testThr1 + testThr2 +
+          testTrp1 + testTrp2 + testTyr1 + testTyr2;
+
+        System.out.println(devSommeTotale);
+        double mst = (double) (devSommeTotale) / (((a.length() / 3) + (b.length() / 3)) * d);
+        System.out.println(Math.pow(2.71828, (-6 * (Math.pow(mst, 2)))));
 
 
     }
-
 
 
     /**
@@ -157,66 +344,40 @@ public class Main {
         return response;
     }
 
-    /**
-     * Methoque qui calcule la deviation minimale entre des chaines d'acides amines
-     *
-     * @param chaine1
-     * @param chaine2
-     * @param dev
-     * @return la somme total des deviations entres les deux chaines.
-     */
-    private static Map<String, Integer> verifyMatch(List<String> chaine1, List<String> chaine2, int dev) {
-        Map<String, Integer> result = new HashMap<>();
-        for (String chaine : chaine1) {
-            if (chaine2.contains(chaine)) {
-                int index1 = chaine1.indexOf(chaine);
-                int index2 = chaine2.indexOf(chaine);
-                int diff = ((index1 - index2)/3) + 1;
-                if (diff < dev) {
-                    diff = dev;
+
+    public static int calculDeviation ( List<String> chaine1, List<String> chaine2, int devInput, String acideAmine) {
+        int deviationMin = devInput;
+        int deviationTemp =100;
+        int chaine1Length = chaine1.size();
+        int chaine2Length = chaine2.size();
+        boolean match = false;
+
+        // Iteration entre les deux listes
+
+        for ( int i = 0; i < chaine1Length ; i++ ) {
+            for (int j = 0; j< chaine2Length ; j++) {
+                if (chaine1.get(i) == acideAmine) {
+                    if ( chaine1.get(i) == chaine2.get(j)) {
+                        match = true;
+                        deviationTemp = j - i;
+                    }
+                    // Mise en valeur absolue
+                    if (deviationTemp < 0) {
+                        deviationTemp = deviationTemp * -1;
+                    }
+                    if (deviationTemp < deviationMin) {
+                        deviationMin = deviationTemp;
+                    }
+
                 }
-                if (diff < 0) {
-                    diff = diff * -1;
-                }
-                result.put(chaine, diff);
-                System.out.println("diff =" + chaine + diff);
             }
-
-
         }
-        return result;
-    }
-
-    /**
-     * Methoque qui calcule la deviation minimale entre des chaines d'acides amines en sens oppose
-     *
-     * @param chaine1
-     * @param chaine2
-     * @param dev
-     * @return la somme total des deviations entres les deux chaines.
-     */
-    private static Map<String, Integer> verifyMatch2(List<String> chaine1, List<String> chaine2, int dev) {
-        Map<String, Integer> result = new HashMap<>();
-        for (String chaine : chaine1) {
-            if (chaine2.contains(chaine)) {
-                int index1 = chaine2.indexOf(chaine);
-                int index2 = chaine1.indexOf(chaine);
-                int diff = ((index2 - index1)/3) + 1;
-                if (diff < dev) {
-                    diff = dev;
-                }
-                if (diff < 0) {
-                    diff = diff * -1;
-                }
-                result.put(chaine, diff);
-                System.out.println("diff2 =" + chaine + diff);
-            }
-
-
+        // Ajustement en cas d'absence de pairs
+        if (!match) {
+            deviationMin = 0;
         }
-        return result;
+        return deviationMin;
     }
 }
-
 
 
